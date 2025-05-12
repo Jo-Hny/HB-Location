@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HB Location - Contact</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Icône HB Location" class="logo-icon">
+                <span class="logo-text">HB Location</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Réservation</a></li>
+                    <li><a href="catalogue.html">Catalogue</a></li>
+                    <li class="active"><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <!-- En-tête de page -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Contactez HB Location</h1>
+                <p>Une question ? Un devis ? Nous vous répondons sous 24h</p>
+            </div>
+        </section>
+
+        <!-- Section contact -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Coordonnées -->
+                    <div class="contact-info">
+                        <h2><i class="fas fa-map-marker-alt"></i> Nos agences</h2>
+                        <div class="info-block">
+                            <h3>Agence Algérie</h3>
+                            <p>Rn 12 Tizi-bouchène, 15001 Azazga</p>
+                            <p><i class="fas fa-phone"></i> 05 50 40 06 65</p>
+                        </div>
+                        
+                        <div class="info-block">
+                            <h3>Agence France</h3>
+                            <p>56 rue Croix Saint-Marc, 51100 Reims</p>
+                            <p><i class="fas fa-phone"></i> 07 52 04 86 62</p>
+                        </div>
+                        
+                        <div class="info-block">
+                            <h3>Email</h3>
+                            <p><i class="fas fa-envelope"></i> hb.location.auto@gmail.com</p>
+                        </div>
+                        
+                        <div class="info-block">
+                            <h3>Horaires</h3>
+                            <p><i class="fas fa-clock"></i> Samedi-Jeudi : 8h-18h<br>
+                            <i class="fas fa-clock"></i> Vendredi : 9h-15h</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulaire -->
+                    <div class="contact-form">
+                        <h2><i class="fas fa-paper-plane"></i> Message rapide</h2>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Votre nom" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Votre email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="phone" placeholder="Votre téléphone">
+                            </div>
+                            <div class="form-group">
+                                <select id="subject" required>
+                                    <option value="">Sujet de votre message</option>
+                                    <option value="reservation">Réservation</option>
+                                    <option value="question">Question</option>
+                                    <option value="problem">Problème technique</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" rows="5" placeholder="Votre message" required></textarea>
+                            </div>
+                            <div class="form-group btn-envoyer-container">
+                                <button type="submit" class="btn-envoyer">
+                                    <i class="fas fa-paper-plane"></i> Envoyer le message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carte -->
+        <section class="map-section">
+            <div class="container">
+                <h2><i class="fas fa-map-marked-alt"></i> Nous trouver</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1552.985553881113!2d4.344584508073828!3d36.746979463598485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128da71d540cb581%3A0x417a0c0cc52db039!2sLOCATION%20DE%20VOITURE%20BOUDEDJA!5e0!3m2!1sfr!2sfr!4v1746818226872!5m2!1sfr!2sfr" 
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+               <div class="footer-section">
+                    <!-- Logo + HB Location à côté -->
+                <div class="logo-hb-wrapper">
+                        <img src="images/logo.png" alt="Logo HB Location" class="footer-logo">
+                        <span class="footer-logo-text">HB Location</span>
+                    </div>
+                    
+                    <!-- Texte en dessous, normal -->
+                    <p class="footer-description">Votre partenaire de confiance pour la location de véhicules depuis 2018.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Réservation</a></li>
+                        <li><a href="catalogue.html"><i class="fas fa-chevron-right"></i> Catalogue</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="cgu.html"><i class="fas fa-chevron-right"></i> CGU</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux sociaux</h3>
+                    <div class="social-links">
+                    <!-- Facebook avec logo visible -->
+                    <a href="https://www.facebook.com/share/1E7LZG3Cci/?mibextid=wwXIfr" class="social-btn fb" target="_blank">
+                        <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
+                    </a>
+                    
+                    <!-- WhatsApp avec logo visible -->
+                    <a href="https://wa.me/+213550400665" class="social-btn wa" target="_blank">
+                        <img src="images/whatsapp-icon.png" alt="WhatsApp" class="social-icon">
+                    </a>
+                    
+                    <!-- Instagram avec logo visible -->
+                    <a href="https://www.instagram.com/hb_location.auto?igsh=MWIxOGt1dHliMGZ5cg==" class="social-btn ig" target="_blank">
+                        <img src="images/instagram-icon.png" alt="Instagram" class="social-icon">
+                    </a>
+                    
+                    <!-- TikTok avec logo visible -->
+                    <a href="https://www.tiktok.com/@hb.location.auto?_t=ZN-8wDhIKKrt8p&_r=1" class="social-btn tt" target="_blank">
+                        <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
+                    </a>
+                </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="text-align: center; padding: 15px 0; border-top: 1px solid #333;">
+                <p style="margin: 0;">&copy; 2025 HB Location. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome pour les icônes -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>
