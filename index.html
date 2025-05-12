@@ -6,7 +6,6 @@
     <title>HB Location - Accueil</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.png" type="image/png">
-    <!-- Police Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -36,16 +35,35 @@
             </div>
         </section>
 
-            <!-- Section Réservation -->
+        <!-- Section Réservation -->
         <section class="reservation-form">
             <div class="form-container">
                 <h2>Réservez dès maintenant</h2>
-                <form id="reservationForm">
+                <form id="reservationForm" action="https://formsubmit.co/hb.location.auto@gmail.com" method="POST">
+                    <!-- Configuration FormSubmit -->
+                    <input type="hidden" name="_subject" value="Nouvelle réservation HB Location">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://wa.me/213550400665?text=Je%20confirme%20ma%20r%C3%A9servation%20HB%20Location">
+                    <input type="hidden" name="_captcha" value="false">
+
                     <!-- Première ligne -->
                     <div class="form-line">
                         <div class="input-group">
-                            <label for="lieu-retrait">Point de retrait</label>
-                            <select id="lieu-retrait" required>
+                            <label for="nom">Nom*</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="prenom">Prénom*</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+
+                    <!-- Deuxième ligne -->
+                    <div class="form-line">
+                        <div class="input-group">
+                            <label for="lieu-retrait">Point de retrait*</label>
+                            <select id="lieu-retrait" name="lieu_retrait" required>
                                 <option value="">Choisissez...</option>
                                 <option value="aeroport-alger">Aéroport d'Alger</option>
                                 <option value="aeroport-bejaia">Aéroport de Béjaïa</option>
@@ -55,35 +73,35 @@
                         </div>
 
                         <div class="input-group">
-                            <label for="vehicule">Véhicule</label>
-                            <select id="vehicule" required>
+                            <label for="vehicule">Véhicule*</label>
+                            <select id="vehicule" name="vehicule" required>
                                 <option value="">Choisissez un véhicule...</option>
-                                <option value="sandero">Dacia Sandero - 4000 DA/jour</option>
-                                <option value="symbol">Renault Symbol - 5000 DA/jour</option>
-                                <option value="clio">Renault Clio - 5500 DA/jour</option>
-                                <option value="fabia">Skoda Fabia- 6000 DA/jour</option>
+                                <option value="Dacia Sandero - 4000 DA/jour">Dacia Sandero - 4000 DA/jour</option>
+                                <option value="Renault Symbol - 5000 DA/jour">Renault Symbol - 5000 DA/jour</option>
+                                <option value="Renault Clio - 5500 DA/jour">Renault Clio - 5500 DA/jour</option>
+                                <option value="Skoda Fabia - 6000 DA/jour">Skoda Fabia - 6000 DA/jour</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Deuxième ligne (Dates) -->
+                    <!-- Troisième ligne (Dates) -->
                     <div class="form-line">
                         <div class="input-group">
-                            <label for="date-debut">Date de début</label>
-                            <input type="date" id="date-debut" required>
+                            <label for="date-debut">Date de début*</label>
+                            <input type="date" id="date-debut" name="date_debut" required>
                         </div>
 
                         <div class="input-group">
-                            <label for="date-fin">Date de fin</label>
-                            <input type="date" id="date-fin" required>
+                            <label for="date-fin">Date de fin*</label>
+                            <input type="date" id="date-fin" name="date_fin" required>
                         </div>
                     </div>
 
-                    <!-- Troisième ligne (Téléphone) -->
+                    <!-- Quatrième ligne (Téléphone) -->
                     <div class="form-line">
                         <div class="input-group">
-                            <label for="indicatif">Indicatif</label>
-                            <select id="indicatif" required>
+                            <label for="indicatif">Indicatif*</label>
+                            <select id="indicatif" name="indicatif" required>
                                 <option value="+213">Algérie (+213)</option>
                                 <option value="+33">France (+33)</option>
                             </select>
@@ -91,19 +109,19 @@
 
                         <div class="input-group">
                             <label for="telephone">Téléphone*</label>
-                            <input type="tel" id="telephone" required>
+                            <input type="tel" id="telephone" name="telephone" required>
                         </div>
                     </div>
 
-                    <!-- Quatrième ligne (Email seul) -->
+                    <!-- Cinquième ligne (Email) -->
                     <div class="form-line">
                         <div class="input-group full-width">
                             <label for="email">Email (facultatif)</label>
-                            <input type="email" id="email">
+                            <input type="email" id="email" name="email">
                         </div>
                     </div>
 
-                    <button type="submit" class="submit-btn">Vérifier la disponibilité</button>
+                    <button type="submit" class="submit-btn">Confirmer la réservation</button>
                 </form>
             </div>
         </section>
@@ -148,58 +166,48 @@
     </main>
 
     <footer>
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <!-- Logo + HB Location à côté -->
-                <div class="logo-hb-wrapper">
-                    <img src="images/logo.png" alt="Logo HB Location" class="footer-logo">
-                    <span class="footer-logo-text">HB Location</span>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo-hb-wrapper">
+                        <img src="images/logo.png" alt="Logo HB Location" class="footer-logo">
+                        <span class="footer-logo-text">HB Location</span>
+                    </div>
+                    <p class="footer-description">Votre partenaire de confiance pour la location de véhicules depuis 2018.</p>
                 </div>
-                
-                <!-- Texte en dessous, normal -->
-                <p class="footer-description">Votre partenaire de confiance pour la location de véhicules depuis 2018.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Réservation</a></li>
-                    <li><a href="catalogue.html"><i class="fas fa-chevron-right"></i> Catalogue</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                    <li><a href="cgu.html"><i class="fas fa-chevron-right"></i> CGU</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Réseaux sociaux</h3>
-                <div class="social-links">
-                    <!-- Facebook avec logo visible -->
-                    <a href="https://www.facebook.com/share/1E7LZG3Cci/?mibextid=wwXIfr" class="social-btn fb" target="_blank">
-                        <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
-                    </a>
-                    
-                    <!-- WhatsApp avec logo visible -->
-                    <a href="https://wa.me/+213550400665" class="social-btn wa" target="_blank">
-                        <img src="images/whatsapp-icon.png" alt="WhatsApp" class="social-icon">
-                    </a>
-                    
-                    <!-- Instagram avec logo visible -->
-                    <a href="https://www.instagram.com/hb_location.auto?igsh=MWIxOGt1dHliMGZ5cg==" class="social-btn ig" target="_blank">
-                        <img src="images/instagram-icon.png" alt="Instagram" class="social-icon">
-                    </a>
-                    
-                    <!-- TikTok avec logo visible -->
-                    <a href="https://www.tiktok.com/@hb.location.auto?_t=ZN-8wDhIKKrt8p&_r=1" class="social-btn tt" target="_blank">
-                        <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
-                    </a>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Réservation</a></li>
+                        <li><a href="catalogue.html"><i class="fas fa-chevron-right"></i> Catalogue</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="cgu.html"><i class="fas fa-chevron-right"></i> CGU</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux sociaux</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1E7LZG3Cci/?mibextid=wwXIfr" class="social-btn fb" target="_blank">
+                            <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
+                        </a>
+                        <a href="https://wa.me/+213550400665" class="social-btn wa" target="_blank">
+                            <img src="images/whatsapp-icon.png" alt="WhatsApp" class="social-icon">
+                        </a>
+                        <a href="https://www.instagram.com/hb_location.auto?igsh=MWIxOGt1dHliMGZ5cg==" class="social-btn ig" target="_blank">
+                            <img src="images/instagram-icon.png" alt="Instagram" class="social-icon">
+                        </a>
+                        <a href="https://www.tiktok.com/@hb.location.auto?_t=ZN-8wDhIKKrt8p&_r=1" class="social-btn tt" target="_blank">
+                            <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
+                        </a>
+                    </div>
                 </div>
             </div>
+            <div class="footer-bottom" style="text-align: center; padding: 15px 0; border-top: 1px solid #333;">
+                <p style="margin: 0;">&copy; 2025 HB Location. Tous droits réservés.</p>
+            </div>
         </div>
-        <div class="footer-bottom" style="text-align: center; padding: 15px 0; border-top: 1px solid #333;">
-            <p style="margin: 0;">&copy; 2025 HB Location. Tous droits réservés.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
-    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
