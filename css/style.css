@@ -106,6 +106,25 @@ nav .active a {
     background: rgba(230, 57, 70, 0.1);
 }
 
+.price-display {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+}
+
+.error-message {
+    color: #e63946;
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+input.error, select.error {
+    border-color: #e63946 !important;
+}
+
 /* ===== HERO SECTION ===== */
 /* ===== HERO SECTION - VERSION AMÉLIORÉE ===== */
 .hero {
