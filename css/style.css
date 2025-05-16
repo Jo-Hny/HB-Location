@@ -1,60 +1,54 @@
-/* ===== STYLES GENERAUX ===== */
-/* ===== SUPPRIMER LES MARGES BLANCHES ===== */
+/* ============================================= */
+/* ================ VARIABLES ================= */
+/* ============================================= */
+:root {
+    /* Couleurs principales */
+    --primary-color: #e63946;
+    --primary-dark: #c1121f;
+    --secondary-color: #222;
+    --light-color: #fff;
+    --dark-color: #000;
+    --gray-light: #f8f9fa;
+    --gray-medium: #ddd;
+    --gray-dark: #444;
+    --text-light: #ccc;
+    
+    /* Polices */
+    --main-font: 'Montserrat', sans-serif;
+    
+    /* Effets */
+    --shadow-sm: 0 3px 10px rgba(0,0,0,0.1);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 20px rgba(0,0,0,0.3);
+    --transition: all 0.3s ease;
+}
+
+/* ============================================= */
+/* ============= STYLES GÉNÉRAUX ============== */
+/* ============================================= */
 body {
-    margin: 0;          /* Supprime la marge blanche autour du body */
-    padding: 0;         /* Supprime le padding par défaut */
-    font-family: 'Montserrat', sans-serif !important;
-    overflow-x: hidden;     /* Empêche tout débordement */
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font) !important;
+    overflow-x: hidden;
+    color: var(--dark-color);
+    line-height: 1.6;
 }
 
 .container {
     width: 100%;
-    max-width: 1200px; /* Garde une largeur max cohérente */
-    margin: 0 auto; /* Centre le contenu */
-    padding: 0 20px; /* Même padding à gauche et droite */
-    box-sizing: border-box; /* Inclut le padding dans la largeur */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-
-.btn {
-    display: inline-block;
-    background: #e63946;
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.btn:hover {
-    background: #c1121f;
-    transform: translateY(-2px);
-}
-
-.btn-large {
-    padding: 15px 30px;
-    font-size: 1.1rem;
-}
-
-.btn-outline {
-    background: transparent;
-    border: 2px solid #e63946;
-    color: #e63946;
-}
-
-.btn-outline:hover {
-    background: #e63946;
-    color: white;
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* ===== HEADER ===== */
+/* ============================================= */
+/* ================= HEADER =================== */
+/* ============================================= */
 header {
-    background: #222;
-    color: white;
+    background: var(--secondary-color);
+    color: var(--light-color);
     padding: 15px 0;
     position: sticky;
     top: 0;
@@ -67,7 +61,7 @@ header {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    color: white;
+    color: var(--light-color);
 }
 
 .logo-icon {
@@ -89,12 +83,12 @@ nav ul {
 }
 
 nav a {
-    color: rgb(255, 255, 255);
+    color: var(--light-color);
     font-weight: 600;
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 20px;
-    transition: all 0.3s;
+    transition: var(--transition);
 }
 
 nav a:hover {
@@ -102,31 +96,13 @@ nav a:hover {
 }
 
 nav .active a {
-    color: #e63946;
+    color: var(--primary-color);
     background: rgba(230, 57, 70, 0.1);
 }
 
-.price-display {
-    text-align: center;
-    font-weight: bold;
-    margin: 15px 0;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 5px;
-}
-
-.error-message {
-    color: #e63946;
-    font-size: 0.8rem;
-    margin-top: 5px;
-}
-
-input.error, select.error {
-    border-color: #e63946 !important;
-}
-
-/* ===== HERO SECTION ===== */
-/* ===== HERO SECTION - VERSION AMÉLIORÉE ===== */
+/* ============================================= */
+/* ================= HERO ===================== */
+/* ============================================= */
 .hero {
     position: relative;
     min-height: 80vh;
@@ -136,7 +112,7 @@ input.error, select.error {
     text-align: center;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), 
                 url('../images/banniere.png') center/cover no-repeat;
-    color: white;
+    color: var(--light-color);
     padding: 40px 20px;
     overflow: hidden;
 }
@@ -146,9 +122,9 @@ input.error, select.error {
     z-index: 2;
     max-width: 800px;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.4); /* Légère surcouche pour lisibilité */
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
-    backdrop-filter: blur(3px); /* Effet de flou moderne */
+    backdrop-filter: blur(3px);
 }
 
 .hero h1 {
@@ -164,14 +140,14 @@ input.error, select.error {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-/* Bouton stylé comme les autres mais amélioré */
+/* Bouton Hero */
 .hero-btn {
     display: inline-block;
     padding: 16px 40px;
     font-size: 1.2rem;
     font-weight: 700;
-    color: white;
-    background: #e63946;
+    color: var(--light-color);
+    background: var(--primary-color);
     border: none;
     border-radius: 50px;
     text-decoration: none;
@@ -180,10 +156,8 @@ input.error, select.error {
     box-shadow: 0 4px 15px rgba(230, 57, 70, 0.6);
     position: relative;
     overflow: hidden;
-    border-radius: 50px !important;
 }
 
-/* Effet de brillance au survol */
 .hero-btn::after {
     content: '';
     position: absolute;
@@ -202,7 +176,7 @@ input.error, select.error {
 }
 
 .hero-btn:hover {
-    background: #c1121f;
+    background: var(--primary-dark);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(193, 18, 31, 0.8);
 }
@@ -212,45 +186,73 @@ input.error, select.error {
     top: 100%;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 60vh;
-    }
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .hero p {
-        font-size: 1.1rem;
-    }
-    .hero-btn {
-        padding: 14px 30px;
-        font-size: 1rem;
-    }
-}
-
-/* ===== FORMULAIRE ===== */
-/* ===== FORMULAIRE COMPLET HARMONISE ===== */
-/* ===== NOUVEAU STYLE FORMULAIRE ===== */
-.reservation-form {
-    padding: 60px 0;
-    background: #f9f9f9;
+/* ============================================= */
+/* ============== FORMULAIRES ================= */
+/* ============================================= */
+.reservation-form, 
+.contact-form {
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .form-container {
     max-width: 850px;
     margin: 0 auto;
     padding: 30px;
-    background: white;
+    background: var(--light-color);
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-sm);
 }
 
-.reservation-form h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #222;
+.reservation-form h2,
+.contact-form h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
     font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.reservation-form h2 i,
+.contact-form h2 i {
+    margin-right: 15px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 25px;
+}
+
+.contact-form .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--gray-dark);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--gray-medium);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
 }
 
 .form-line {
@@ -271,30 +273,37 @@ input.error, select.error {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #444;
+    color: var(--gray-dark);
     font-size: 0.95rem;
 }
 
 .input-group input,
-.input-group select {
+.input-group select,
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--gray-medium);
     border-radius: 6px;
     font-size: 16px;
-    background: white;
+    background: var(--light-color);
     box-sizing: border-box;
-    transition: all 0.3s;
+    transition: var(--transition);
 }
 
 .input-group input:focus,
-.input-group select:focus {
-    border-color: #e63946;
+.input-group select:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
     outline: none;
     box-shadow: 0 0 0 2px rgba(230,57,70,0.2);
 }
 
-.input-group select {
+.input-group select,
+.form-group select {
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
@@ -302,291 +311,183 @@ input.error, select.error {
     background-size: 14px;
 }
 
-.submit-btn {
+/* Boutons de formulaire */
+.submit-btn,
+.btn-envoyer {
     display: block;
     width: 100%;
     max-width: 300px;
     margin: 30px auto 0;
-    padding: 15px;
-    background: #e63946;
-    color: white;
+    padding: 15px 25px;
+    background: var(--primary-color);
+    color: var(--light-color);
     border: none;
-    border-radius: 6px;
+    border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
 }
 
-.submit-btn:hover {
-    background: #c1121f;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.submit-btn:hover,
+.btn-envoyer:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(193, 18, 31, 0.6);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .form-line {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .input-group {
-        width: 100%;
-    }
-    
-    .submit-btn {
-        max-width: 100%;
-    }
+/* Styles spécifiques pour le formulaire de contact */
+.btn-envoyer i {
+    margin-right: 10px;
+    transition: transform 0.3s ease;
 }
 
-/* ===== VEHICULES ===== */
-/* ===== STYLE UNIFORME POUR TOUS LES BOUTONS ===== */
-/* ===== CORRECTION DES CARTES VÉHICULES ===== */
-.vehicle-card {
-    border-radius: 10px;
+.btn-envoyer:hover i {
+    transform: translateX(5px);
+}
+
+.btn-envoyer::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+}
+
+.btn-envoyer:hover::after {
+    left: 100%;
+    top: 100%;
+}
+
+.btn-envoyer-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Messages d'erreur */
+.error-message {
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+input.error,
+select.error {
+    border-color: var(--primary-color) !important;
+}
+
+/* Affichage du prix */
+.price-display {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 10px;
+    background: var(--gray-light);
+    border-radius: 5px;
+}
+
+/* ============================================= */
+/* ============== VÉHICULES =================== */
+/* ============================================= */
+.vehicles-grid,
+.vehicules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.vehicle-card,
+.vehicule-card {
+    background: var(--light-color);
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    transition: all 0.3s;
-    height: 100%; /* Ajoutez cette ligne */
-    display: flex; /* Ajoutez cette ligne */
-    flex-direction: column; /* Ajoutez cette ligne */
-}
-
-/* Contrôle de la hauteur de l'image */
-.vehicle-card img {
-    width: 100%;
-    height: 200px; /* Hauteur fixe */
-    object-fit: cover;
-    object-position: center;
-}
-
-/* Ajustement du contenu */
-.vehicle-info {
-    padding: 20px;
-    flex-grow: 1; /* Prend l'espace restant */
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* Taille du bouton */
-/* STYLE DÉFINITIF BOUTONS DÉTAILS */
-.vehicle-card .btn {
-    /* Forme */
-    border-radius: 50px;
-    padding: 10px 25px;
-    display: inline-block;
-    
-    /* Couleur */
-    background: #e63946;
-    color: white;
-    border: none;
-    
-    /* Texte */
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    text-align: center;
-    
-    /* Effets */
-    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    
-    /* Position */
-    margin-top: 15px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Effet hover */
-.vehicle-card .btn:hover {
-    background: #c1121f;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(193, 18, 31, 0.6);
-}
-
-/* Grille responsive */
-.vehicles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-/* ===== FOOTER ===== */
-footer {
-    background: #222;
-    color: white;
-    padding: 50px 0 0;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.footer-section h3 {
-    color: #e63946;
-    margin-bottom: 20px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-    border-top: 1px solid #444;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .form-row {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .hero {
-        padding: 80px 0;
-    }
-    
-    .hero h1 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 576px) {
-    nav ul {
-        gap: 10px;
-    }
-    
-    .logo-text {
-        font-size: 1.2rem;
-    }
-}
-/* ============================================= */
-/* FORMULAIRES                                   */
-/* ============================================= */
-.reservation-form, 
-.contact-form {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 40px 0;
-}
-
-.reservation-form h2, 
-.contact-form h2 {
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: #444;
-}
-
-.form-group input, 
-.form-group select, 
-.form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: border 0.3s;
-}
-
-.form-group input:focus, 
-.form-group select:focus, 
-.form-group textarea:focus {
-    border-color: #000000; /* BORDURE ROUGE AU FOCUS */
-    outline: none; /* SUPPRIME LE CONTOUR BLANC NATIF */
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* ============================================= */
-/* VEHICULES                                     */
-/* ============================================= */
-/* Catalogue simplifié */
-.vehicules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.vehicule-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
+.vehicle-card:hover,
 .vehicule-card:hover {
     transform: translateY(-5px);
 }
 
+.vehicle-card img,
 .vehicule-card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
+    object-position: center;
 }
 
+.vehicle-info,
 .vehicule-info {
     padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
+.vehicle-info h3,
 .vehicule-info h3 {
     margin-bottom: 10px;
-    color: #222;
+    color: var(--secondary-color);
 }
 
+.vehicle-info ul,
 .vehicule-info ul {
     margin: 15px 0;
     padding-left: 20px;
 }
 
+.vehicle-info li,
 .vehicule-info li {
     margin-bottom: 8px;
 }
 
-/* Style spécifique pour les boutons du catalogue */
+/* Boutons véhicules */
+.btn,
+.vehicle-card .btn,
 .btn-reserver {
     display: inline-block;
-    padding: 12px 30px;
-    background: #e63946;
-    color: white;
+    padding: 12px 25px;
+    background: var(--primary-color);
+    color: var(--light-color);
     text-decoration: none;
     font-weight: 600;
     border-radius: 50px;
     text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
-    border: 2px solid #e63946;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.4);
+    border: 2px solid var(--primary-color);
     margin-top: 15px;
+}
+
+.btn:hover,
+.vehicle-card .btn:hover,
+.btn-reserver:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(193, 18, 31, 0.6);
+}
+
+.btn-reserver {
     width: 80%;
     max-width: 200px;
 }
 
 .btn-reserver:hover {
-    background: white;
-    color: #e63946;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(230, 57, 70, 0.4);
+    background: var(--light-color);
+    color: var(--primary-color);
 }
 
-/* Conteneur pour centrer le bouton */
 .btn-container {
     display: flex;
     justify-content: center;
@@ -594,32 +495,34 @@ footer {
     margin-top: 20px;
 }
 
-/* Ajustement de la carte véhicule */
-.vehicule-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+/* Variantes de boutons */
+.btn-large {
+    padding: 15px 30px;
+    font-size: 1.1rem;
 }
 
-.vehicule-info {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 20px;
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
-@media (max-width: 768px) {
-    .vehicules-grid {
-        grid-template-columns: 1fr;
-    }
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: var(--light-color);
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* ============================================= */
-/* PAGE HEADER                                   */
+/* ================= PAGES ===================== */
 /* ============================================= */
+/* En-tête de page */
 .page-header {
-    background-color: #222;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--light-color);
     padding: 80px 0;
     text-align: center;
 }
@@ -627,7 +530,6 @@ footer {
 .page-header h1 {
     font-size: 2.5rem;
     margin-bottom: 15px;
-    color: white;
 }
 
 .page-header p {
@@ -635,9 +537,7 @@ footer {
     opacity: 0.9;
 }
 
-/* ============================================= */
-/* CONTACT PAGE                                  */
-/* ============================================= */
+/* Page Contact */
 .contact-section {
     padding: 60px 0;
 }
@@ -649,14 +549,14 @@ footer {
 }
 
 .contact-info {
-    background: #fff;
+    background: var(--light-color);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-md);
 }
 
 .contact-info h2 {
-    color: #e63946;
+    color: var(--primary-color);
     margin-bottom: 25px;
     font-size: 1.8rem;
     display: flex;
@@ -682,7 +582,7 @@ footer {
 }
 
 .info-block i {
-    color: #e63946;
+    color: var(--primary-color);
     width: 20px;
     margin-right: 10px;
 }
@@ -702,83 +602,75 @@ footer {
 
 .map-section h2 i {
     margin-right: 10px;
-    color: #e63946;
+    color: var(--primary-color);
 }
 
 .map-container {
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-md);
     height: 450px;
 }
-/* Style spécifique pour le bouton Envoyer */
-.btn-envoyer {
-    display: block;
-    width: 100%;
-    max-width: 300px;
-    margin: 30px auto 0;
-    padding: 15px 25px;
-    background: #e63946;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 1.1rem;
+
+/* Page CGU */
+.cgu-header {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('../images/banniere.png') center/cover;
+}
+
+.cgu-content {
+    padding: 50px 0;
+    line-height: 1.8;
+    color: var(--gray-dark);
+}
+
+.cgu-article {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: var(--light-color);
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary-color);
+}
+
+.cgu-article h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.cgu-article h2 i {
+    margin-right: 15px;
+    font-size: 1.2em;
+}
+
+.cgu-link {
+    color: var(--primary-color);
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
-    position: relative;
-    overflow: hidden;
+    text-decoration: none;
+    transition: var(--transition);
 }
 
-.btn-envoyer:hover {
-    background: #c1121f;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(193, 18, 31, 0.6);
+.cgu-link:hover {
+    text-decoration: underline;
 }
 
-.btn-envoyer:active {
-    transform: translateY(-1px);
-}
-
-.btn-envoyer i {
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-}
-
-.btn-envoyer:hover i {
-    transform: translateX(5px);
-}
-
-/* Effet de vague au survol */
-.btn-envoyer::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(30deg);
-    transition: all 0.5s ease;
-}
-
-.btn-envoyer:hover::after {
-    left: 100%;
-    top: 100%;
-}
-
-/* Conteneur pour centrage */
-.btn-envoyer-container {
+.cgu-acceptance {
+    background: var(--gray-light);
+    padding: 20px;
+    border-radius: 8px;
     text-align: center;
-    margin-top: 30px;
+    font-weight: 600;
+    margin-top: 40px;
+    border: 1px dashed var(--primary-color);
 }
+
 /* ============================================= */
-/* FOOTER                                        */
+/* ================= FOOTER ==================== */
 /* ============================================= */
 footer {
-    background-color: #222;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--light-color);
     padding: 50px 0 0;
 }
 
@@ -790,8 +682,8 @@ footer {
 }
 
 .footer-section h3 {
+    color: var(--primary-color);
     margin-bottom: 20px;
-    color: #e63946;
 }
 
 .footer-section ul {
@@ -803,60 +695,40 @@ footer {
 }
 
 .footer-section ul li a {
-    color: #ddd;
-    transition: color 0.3s;
+    color: var(--gray-medium);
+    transition: var(--transition);
 }
 
 .footer-section ul li a:hover {
-    color: #e63946;
+    color: var(--primary-color);
 }
 
-/* Conteneur logo + texte HB Location */
+/* Logo footer */
 .logo-hb-wrapper {
     display: flex;
-    align-items: center;  /* Alignement vertical */
-    gap: 10px;           /* Espace entre logo et texte */
-    margin-bottom: 5px;  /* Petit espace avant le texte dessous */
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
 }
 
-/* Logo NON déformé */
 .footer-logo {
-    height: 50px;        /* Taille fixe */
-    width: auto;         /* Garde les proportions */
+    height: 50px;
+    width: auto;
 }
 
-/* Texte "HB Location" */
 .footer-logo-text {
     font-size: 1.4rem;
     font-weight: bold;
-    color: white;
+    color: var(--light-color);
 }
 
-/* Texte en dessous */
 .footer-description {
     margin: 0;
     font-size: 0.9rem;
-    color: #ccc;         /* Gris clair pour le texte secondaire */
+    color: var(--text-light);
 }
 
-/* Texte descriptif inchangé */
-.footer-section p {
-    margin: 0;
-}
-
-/* Adaptation mobile */
-@media (max-width: 768px) {
-    .footer-section:first-child {
-        align-items: center;
-        text-align: center;
-    }
-    
-    .logo-icon {
-        height: 40px;
-    }
-}
-
-/* ===== SOCIAL LINKS ===== */
+/* Liens sociaux */
 .social-links {
     display: flex;
     gap: 20px;
@@ -871,9 +743,9 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: white;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
+    background: var(--light-color);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
     position: relative;
     overflow: hidden;
 }
@@ -882,27 +754,26 @@ footer {
     width: 30px;
     height: 30px;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
-/* Effets au survol */
 .social-btn:hover {
     transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-lg);
 }
 
 .social-btn:hover .social-icon {
     transform: scale(1.2);
 }
 
-/* Couleurs de fond au survol */
+/* Couleurs des réseaux sociaux */
 .fb:hover { background: #1877F2; }
 .wa:hover { background: #25D366; }
 .ig:hover { background: #E1306C; }
-.tt:hover { background: #000000; }
+.tt:hover { background: var(--dark-color); }
 
 /* ============================================= */
-/* ANIMATIONS                                    */
+/* ============== ANIMATIONS =================== */
 /* ============================================= */
 @keyframes fadeInUp {
     from {
@@ -919,76 +790,8 @@ footer {
     animation: fadeInUp 0.6s ease forwards;
 }
 
-/* CGU spécifiques */
-.cgu-header {
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('../images/banniere.png') center/cover;
-}
-
-.cgu-content {
-    padding: 50px 0;
-    line-height: 1.8;
-    color: #444;
-}
-
-.cgu-article {
-    line-height: 1.8;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-}
-.cgu-article {
-    margin-bottom: 40px;
-    padding: 25px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
-    border-left: 4px solid #e63946;
-}
-
-.cgu-article h2 {
-    color: #e63946;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.cgu-article h2 i {
-    margin-right: 15px;
-    font-size: 1.2em;
-}
-
-.cgu-link {
-    color: #e63946;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.cgu-link:hover {
-    text-decoration: underline;
-}
-
-.cgu-acceptance {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 600;
-    margin-top: 40px;
-    border: 1px dashed #e63946;
-}
-
-@media (max-width: 768px) {
-    .cgu-article {
-        padding: 20px 15px;
-    }
-    
-    .cgu-article h2 {
-        font-size: 1.3rem;
-    }
-}
-
 /* ============================================= */
-/* RESPONSIVE                                    */
+/* ============= RESPONSIVE ==================== */
 /* ============================================= */
 @media (max-width: 992px) {
     .vehicule-card-detail {
@@ -1001,6 +804,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+    /* Header */
     .header-container {
         flex-direction: column;
     }
@@ -1009,29 +813,28 @@ footer {
         margin-bottom: 15px;
     }
 
+    /* Formulaires */
+    .form-line,
     .form-row,
     .date-group {
         flex-direction: column;
         gap: 15px;
     }
     
+    .submit-btn,
     .btn-submit {
         max-width: 100%;
     }
     
+    /* Navigation */
     nav ul {
         margin-top: 15px;
+        gap: 10px;
     }
     
-    nav ul li {
-        margin-left: 15px;
-    }
-
-    nav ul li {
-        margin-right: 15px;
-    }
-    
+    /* Hero */
     .hero {
+        min-height: 60vh;
         padding: 80px 0;
     }
     
@@ -1039,10 +842,22 @@ footer {
         font-size: 2rem;
     }
     
-    .contact-grid {
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-btn {
+        padding: 14px 30px;
+        font-size: 1rem;
+    }
+    
+    /* Grilles */
+    .contact-grid,
+    .vehicules-grid {
         grid-template-columns: 1fr;
     }
     
+    /* Pages */
     .page-header {
         padding: 60px 0;
     }
@@ -1051,9 +866,20 @@ footer {
     .map-section {
         padding: 40px 0;
     }
+    
+    /* Footer */
+    .footer-section:first-child {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .logo-icon {
+        height: 40px;
+    }
 }
 
 @media (max-width: 576px) {
+    /* Navigation */
     nav ul {
         flex-direction: column;
         align-items: center;
@@ -1063,6 +889,11 @@ footer {
         margin: 5px 0;
     }
     
+    .logo-text {
+        font-size: 1.2rem;
+    }
+    
+    /* Textes */
     .page-header h1 {
         font-size: 1.8rem;
     }
@@ -1073,7 +904,11 @@ footer {
         font-size: 1.5rem;
     }
     
-    .vehicules-grid {
-        grid-template-columns: 1fr;
+    .cgu-article {
+        padding: 20px 15px;
+    }
+    
+    .cgu-article h2 {
+        font-size: 1.3rem;
     }
 }
