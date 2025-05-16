@@ -1,37 +1,111 @@
+/**
+ * HB Location - Script principal
+ * Gère les fonctionnalités interactives du site :
+ * - Formulaire de réservation
+ * - Formulaire de contact
+ * - Animations
+ * - Navigation du catalogue
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    // gestion du formulaire de réservation
-reservationForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+    // =============================================
+    // 1. INITIALISATION DES FORMULAIRES
+    // =============================================
     
-    // Récupération des valeurs existantes
-    const dateDebut = document.getElementById('date-debut').value;
-    const dateFin = document.getElementById('date-fin').value;
-    const vehiculeSelect = document.getElementById('vehicule');
-    const lieuRetraitSelect = document.getElementById('lieu-retrait');
-    const indicatif = document.getElementById('indicatif').value;
-    const telephone = document.getElementById('telephone').value;
-    const email = document.getElementById('email').value;
-
-    // Validation
-    if (!dateDebut || !dateFin || !vehiculeSelect.value || !lieuRetraitSelect.value || !telephone) {
-        alert('Veuillez remplir tous les champs obligatoires');
-        return;
+    // Formulaire de réservation
+    const reservationForm = document.getElementById('reservationForm');
+    if (reservationForm) {
+        reservationForm.addEventListener('submit', handleReservationSubmit);
+        
+        // Ecouteur pour le calcul dynamique du prix
+        reservationForm.addEventListener('change', function(e) {
+            if (e.target.id === 'vehicule' || e.target.id === 'date-debut' || e.target.id === 'date-fin') {
+                updatePriceDisplay();
+            }
+        });
     }
 
-    // Validation du téléphone
-    if (!/^[0-9]{9,15}$/.test(telephone)) {
-        alert('Numéro de téléphone invalide (9 à 15 chiffres)');
-        return;
+    // Formulaire de contact
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactSubmit);
     }
 
-    // Validation optionnelle de l'email
+    // =============================================
+    // 2. INITIALISATION DES ANIMATIONS
+    // =============================================
+    initAnimations();
+    
+    // =============================================
+    // 3. INITIALISATION DES CATÉGORIES CATALOGUE
+    // =============================================
+    initCategoryButtons();
+});
+
+// =============================================
+// FONCTIONS DU FORMULAIRE DE RÉSERVATION
+// =============================================
+
+/**
+ * Gère la soumission du formulaire de réservation
+ * @param {Event} e - L'événement de soumission
+ */
+function handleReservationSubmit(e) {
+    e.preventDefault();
+    clearErrors();
+    
+    // Récupération des valeurs
+    const formElements = e.target.elements;
+    const dateDebut = formElements['date-debut'].value;
+    const dateFin = formElements['date-fin'].value;
+    const vehiculeSelect = formElements['vehicule'];
+    const lieuRetraitSelect = formElements['lieu-retrait'];
+    const telephone = formElements['telephone'].value;
+    const email = formElements['email'].value;
+
+    // Validation des champs obligatoires
+    let isValid = true;
+    
+    if (!dateDebut) {
+        showError('Date de début requise', 'date-debut');
+        isValid = false;
+    }
+    
+    if (!dateFin) {
+        showError('Date de fin requise', 'date-fin');
+        isValid = false;
+    }
+    
+    if (!vehiculeSelect.value) {
+        showError('Véhicule requis', 'vehicule');
+        isValid = false;
+    }
+    
+    if (!lieuRetraitSelect.value) {
+        showError('Lieu de retrait requis', 'lieu-retrait');
+        isValid = false;
+    }
+    
+    if (!telephone) {
+        showError('Téléphone requis', 'telephone');
+        isValid = false;
+    } else if (!/^[0-9]{9,15}$/.test(telephone)) {
+        showError('Numéro invalide (9-15 chiffres)', 'telephone');
+        isValid = false;
+    }
+    
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Format d\'email invalide');
-        return;
+        showError('Format email invalide', 'email');
+        isValid = false;
     }
+    
+    if (!isValid) return;
 
-    const vehiculeText = vehiculeSelect.options[vehiculeSelect.selectedIndex].text;
+    // Calcul du prix et préparation des données
+    const priceInfo = calculatePrice();
+    const vehiculeText = vehiculeSelect.options[vehiculeSelect.selectedIndex].text.split(' - ')[0];
     const lieuRetraitText = lieuRetraitSelect.options[lieuRetraitSelect.selectedIndex].text;
+    const indicatif = formElements['indicatif'].value;
     const telComplet = `${indicatif}${telephone}`;
 
     // Message de confirmation
@@ -40,7 +114,9 @@ reservationForm.addEventListener('submit', function(e) {
         --------------------------
         Véhicule: ${vehiculeText}
         Point de retrait: ${lieuRetraitText}
-        Période: du ${new Date(dateDebut).toLocaleDateString()} au ${new Date(dateFin).toLocaleDateString()}
+        Période: ${formatDate(dateDebut)} au ${formatDate(dateFin)}
+        Durée: ${priceInfo.totalDays} jours
+        Prix total: ${priceInfo.totalPrice}
         Téléphone: ${telComplet}
         ${email ? `Email: ${email}` : ''}
         
@@ -49,71 +125,98 @@ reservationForm.addEventListener('submit', function(e) {
     
     alert(confirmationMessage);
     
-    // Log pour débogage
-    console.log('Réservation:', { 
-        vehicule: vehiculeSelect.value, 
-        lieuRetrait: lieuRetraitSelect.value, 
-        dateDebut, 
-        dateFin,
-        telephone: telComplet,
-        email
-    });
-    
-    // Réinitialisation optionnelle du formulaire
-    // reservationForm.reset();
-});
+    // Réinitialisation optionnelle
+    // e.target.reset();
+}
 
-    // [Le reste de votre code existant pour les autres fonctionnalités...]
-    // Gestion du formulaire de contact
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupération des valeurs
-            const nom = document.getElementById('nom').value;
-            const email = document.getElementById('email').value;
-            const sujet = document.getElementById('sujet').value;
-            const message = document.getElementById('message').value;
-            
-            // Validation simple
-            if (!nom || !email || !sujet || !message) {
-                alert('Veuillez remplir tous les champs');
-                return;
-            }
-            
-            if (!email.includes('@')) {
-                alert('Veuillez entrer une adresse email valide');
-                return;
-            }
-            
-            // Simulation d'envoi
-            alert('Message envoyé! Nous vous répondrons dès que possible.');
-            
-            // Ici, vous pourriez ajouter une requête AJAX vers votre backend
-            console.log('Contact:', { nom, email, sujet, message });
-            
-            // Réinitialisation du formulaire
-            contactForm.reset();
-        });
+/**
+ * Calcule le prix total de la réservation
+ * @returns {Object} Infos de prix
+ */
+function calculatePrice() {
+    const vehiculeSelect = document.getElementById('vehicule');
+    const selectedOption = vehiculeSelect.options[vehiculeSelect.selectedIndex];
+    const priceText = selectedOption.text.match(/[\d,]+ DA/)[0];
+    const pricePerDay = parseInt(priceText.replace(/\D/g, ''));
+    
+    const dateDebut = new Date(document.getElementById('date-debut').value);
+    const dateFin = new Date(document.getElementById('date-fin').value);
+    
+    // Calcul du nombre de jours
+    const diffTime = Math.abs(dateFin - dateDebut);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+    
+    return {
+        pricePerDay: priceText,
+        totalDays: diffDays,
+        totalPrice: (pricePerDay * diffDays).toLocaleString() + ' DA'
+    };
+}
+
+/**
+ * Met à jour l'affichage du prix
+ */
+function updatePriceDisplay() {
+    const priceDisplay = document.getElementById('price-display');
+    if (!priceDisplay) return;
+    
+    const priceInfo = calculatePrice();
+    priceDisplay.textContent = `Total estimé : ${priceInfo.totalPrice} (${priceInfo.totalDays} jours)`;
+}
+
+// =============================================
+// FONCTIONS DU FORMULAIRE DE CONTACT
+// =============================================
+
+function handleContactSubmit(e) {
+    e.preventDefault();
+    clearErrors();
+    
+    // Récupération des valeurs
+    const nom = document.getElementById('nom').value;
+    const email = document.getElementById('email').value;
+    const sujet = document.getElementById('sujet').value;
+    const message = document.getElementById('message').value;
+    
+    // Validation
+    let isValid = true;
+    
+    if (!nom) {
+        showError('Nom requis', 'nom');
+        isValid = false;
     }
     
-    // Animation au scroll
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.vehicule-card, .contact-info, .reservation-form');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
-            
-            if (elementPosition < screenPosition) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }
-        });
-    };
+    if (!email) {
+        showError('Email requis', 'email');
+        isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Format email invalide', 'email');
+        isValid = false;
+    }
     
-    // Ajout d'effets initiaux
+    if (!sujet) {
+        showError('Sujet requis', 'sujet');
+        isValid = false;
+    }
+    
+    if (!message) {
+        showError('Message requis', 'message');
+        isValid = false;
+    }
+    
+    if (!isValid) return;
+    
+    // Simulation d'envoi
+    alert('Message envoyé! Nous vous répondrons dès que possible.');
+    e.target.reset();
+}
+
+// =============================================
+// FONCTIONS D'ANIMATION
+// =============================================
+
+function initAnimations() {
+    // Configuration initiale des éléments animés
     const cards = document.querySelectorAll('.vehicule-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
@@ -137,12 +240,30 @@ reservationForm.addEventListener('submit', function(e) {
     
     // Écouteur d'événement pour le scroll
     window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Animation initiale
+}
+
+function animateOnScroll() {
+    const elements = document.querySelectorAll('.vehicule-card, .contact-info, .reservation-form');
+    const screenPosition = window.innerHeight / 1.3;
     
-    // Animation initiale
-    animateOnScroll();
-    
-    // Gestion des catégories dans le catalogue
+    elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        
+        if (elementPosition < screenPosition) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }
+    });
+}
+
+// =============================================
+// FONCTIONS DU CATALOGUE
+// =============================================
+
+function initCategoryButtons() {
     const categoryBtns = document.querySelectorAll('.category-btn');
+    
     categoryBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -157,4 +278,48 @@ reservationForm.addEventListener('submit', function(e) {
             }
         });
     });
-});
+}
+
+// =============================================
+// FONCTIONS UTILITAIRES
+// =============================================
+
+/**
+ * Affiche un message d'erreur
+ * @param {string} message - Le message d'erreur
+ * @param {string} elementId - L'ID de l'élément associé
+ */
+function showError(message, elementId = null) {
+    if (elementId) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        element.classList.add('error');
+        
+        // Crée le message d'erreur s'il n'existe pas déjà
+        if (!element.nextElementSibling || !element.nextElementSibling.classList.contains('error-message')) {
+            element.insertAdjacentHTML('afterend', `<div class="error-message">${message}</div>`);
+        }
+    } else {
+        alert(message);
+    }
+}
+
+/**
+ * Efface tous les messages d'erreur
+ */
+function clearErrors() {
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+    document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+}
+
+/**
+ * Formate une date au format JJ/MM/AAAA
+ * @param {string} dateString - La date à formater
+ * @returns {string} Date formatée
+ */
+function formatDate(dateString) {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR');
+}
