@@ -117,16 +117,6 @@ nav .active a {
     overflow: hidden;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 40px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    backdrop-filter: blur(3px);
-}
-
 .hero h1 {
     font-size: 2.8rem;
     margin-bottom: 20px;
@@ -314,6 +304,7 @@ nav .active a {
 /* Boutons de formulaire */
 .submit-btn,
 .btn-envoyer {
+    position: relative;
     display: block;
     width: 100%;
     max-width: 300px;
@@ -793,21 +784,9 @@ footer {
 /* ============================================= */
 /* ============= RESPONSIVE ==================== */
 /* ============================================= */
-@media (max-width: 992px) {
-    .vehicule-card-detail {
-        grid-template-columns: 1fr;
-    }
-    
-    .vehicule-card-detail img {
-        height: 300px;
-    }
-}
 
 @media (max-width: 768px) {
     /* Header */
-    .header-container {
-        flex-direction: column;
-    }
     
     .logo {
         margin-bottom: 15px;
@@ -815,16 +794,8 @@ footer {
 
     /* Formulaires */
     .form-line,
-    .form-row,
-    .date-group {
-        flex-direction: column;
-        gap: 15px;
-    }
     
     .submit-btn,
-    .btn-submit {
-        max-width: 100%;
-    }
     
     /* Navigation */
     nav ul {
