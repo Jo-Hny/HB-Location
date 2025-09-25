@@ -6,15 +6,16 @@
     <title>HB Location - Contact</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="Icône HB Location" class="logo-icon">
                 <span class="logo-text">HB Location</span>
-            </div>
+            </a>
             <nav>
                 <ul>
                     <li><a href="index.html">Réservation</a></li>
@@ -71,16 +72,20 @@
                         <h2><i class="fas fa-paper-plane"></i> Message rapide</h2>
                         <form id="contactForm">
                             <div class="form-group">
-                                <input type="text" id="name" placeholder="Votre nom" required>
+                                <label for="nom">Nom</label>
+                                <input type="text" id="nom" placeholder="Votre nom" required>
                             </div>
                             <div class="form-group">
+                                <label for="email">email</label>
                                 <input type="email" id="email" placeholder="Votre email" required>
                             </div>
                             <div class="form-group">
+                                <label for="phone">phone</label>
                                 <input type="tel" id="phone" placeholder="Votre téléphone">
                             </div>
                             <div class="form-group">
-                                <select id="subject" required>
+                                <label for="sujet">Sujet</label>
+                                <select id="sujet" required>
                                     <option value="">Sujet de votre message</option>
                                     <option value="reservation">Réservation</option>
                                     <option value="question">Question</option>
@@ -89,6 +94,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="message">message</label>
                                 <textarea id="message" rows="5" placeholder="Votre message" required></textarea>
                             </div>
                             <div class="form-group btn-envoyer-container">
@@ -108,7 +114,8 @@
                 <h2><i class="fas fa-map-marked-alt"></i> Nous trouver</h2>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1552.985553881113!2d4.344584508073828!3d36.746979463598485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128da71d540cb581%3A0x417a0c0cc52db039!2sLOCATION%20DE%20VOITURE%20BOUDEDJA!5e0!3m2!1sfr!2sfr!4v1746818226872!5m2!1sfr!2sfr" 
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    referrerpolicy="no-referrer-when-downgrade"       
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
@@ -141,22 +148,22 @@
                     <h3>Réseaux sociaux</h3>
                     <div class="social-links">
                     <!-- Facebook avec logo visible -->
-                    <a href="https://www.facebook.com/share/1E7LZG3Cci/?mibextid=wwXIfr" class="social-btn fb" target="_blank">
+                    <a href="https://www.facebook.com/share/1E7LZG3Cci/?mibextid=wwXIfr" class="social-btn fb" target="_blank" rel="noopener noreferrer">
                         <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
                     </a>
                     
                     <!-- WhatsApp avec logo visible -->
-                    <a href="https://wa.me/+213550400665" class="social-btn wa" target="_blank">
+                    <a href="https://wa.me/+213550400665" class="social-btn wa" target="_blank" rel="noopener noreferrer">
                         <img src="images/whatsapp-icon.png" alt="WhatsApp" class="social-icon">
                     </a>
                     
                     <!-- Instagram avec logo visible -->
-                    <a href="https://www.instagram.com/hb_location.auto?igsh=MWIxOGt1dHliMGZ5cg==" class="social-btn ig" target="_blank">
+                    <a href="https://www.instagram.com/hb_location.auto?igsh=MWIxOGt1dHliMGZ5cg==" class="social-btn ig" target="_blank" rel="noopener noreferrer">
                         <img src="images/instagram-icon.png" alt="Instagram" class="social-icon">
                     </a>
                     
                     <!-- TikTok avec logo visible -->
-                    <a href="https://www.tiktok.com/@hb.location.auto?_t=ZN-8wDhIKKrt8p&_r=1" class="social-btn tt" target="_blank">
+                    <a href="https://www.tiktok.com/@hb.location.auto?_t=ZN-8wDhIKKrt8p&_r=1" class="social-btn tt" target="_blank" rel="noopener noreferrer">
                         <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
                     </a>
                 </div>
