@@ -123,6 +123,7 @@ function handleReservationSubmit(e) {
         Nous vous contacterons pour confirmation.
     `;
     
+    e.target.submit()
     alert(confirmationMessage);
     
     // Réinitialisation optionnelle
@@ -136,7 +137,7 @@ function handleReservationSubmit(e) {
 function calculatePrice() {
     const vehiculeSelect = document.getElementById('vehicule');
     const selectedOption = vehiculeSelect.options[vehiculeSelect.selectedIndex];
-    const priceText = selectedOption.text.match(/[\d,]+ DA/)[0];
+    const priceText = selectedOption.value.match(/[\d,]+ DA/)[0];
     const pricePerDay = parseInt(priceText.replace(/\D/g, ''));
     
     const dateDebut = new Date(document.getElementById('date-debut').value);
@@ -254,29 +255,6 @@ function animateOnScroll() {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
         }
-    });
-}
-
-// =============================================
-// FONCTIONS DU CATALOGUE
-// =============================================
-
-function initCategoryButtons() {
-    const categoryBtns = document.querySelectorAll('.category-btn');
-    
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
-        });
     });
 }
 
