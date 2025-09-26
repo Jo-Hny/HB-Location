@@ -61,7 +61,8 @@ function handleReservationSubmit(e) {
     const vehiculeSelect = formElements['vehicule'];
     const lieuRetraitSelect = formElements['lieu-retrait'];
     const indicatifSelect = formElements['indicatif'];
-    const telephone = formElements['telephone'].value;
+    const telephoneRaw = formElements['telephone'].value || '';
+    const telDigits = telephoneRaw.replace(/\D/g, '');
     const email = formElements['email'].value;
 
     // Validation des champs obligatoires
@@ -117,7 +118,11 @@ function handleReservationSubmit(e) {
     const vehiculeText = vehiculeSelect.options[vehiculeSelect.selectedIndex].text.split(' - ')[0];
     const lieuRetraitText = lieuRetraitSelect.options[lieuRetraitSelect.selectedIndex].text;
     const indicatif = indicatifSelect ? indicatifSelect.value : '';
-    const telComplet = `${indicatif}${telephone}`;
+    let phoneOut = telDigits;
+    if (indicatif === '+33' && /^0\d{9}$/.test(telDigits)) {
+        phoneOut = telDigits.slice(1);
+    }
+    const telComplet = `${indicatif}${phoneOut}`;
 
     // Message de confirmation
     const confirmationMessage = `
