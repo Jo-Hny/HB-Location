@@ -206,44 +206,25 @@ function handleContactSubmit(e) {
     e.preventDefault();
     clearErrors();
     
-    // Récupération des valeurs
-    const nom = document.getElementById('nom').value;
-    const email = document.getElementById('email').value;
+    const nom = document.getElementById('nom').value.trim();
+    const email = document.getElementById('email').value.trim();
     const sujet = document.getElementById('sujet').value;
-    const message = document.getElementById('message').value;
+    const message = document.getElementById('message').value.trim();
     
-    // Validation
     let isValid = true;
-    
-    if (!nom) {
-        showError('Nom requis', 'nom');
-        isValid = false;
+    if (!nom)   { showError('Nom requis', 'nom'); isValid = false; }
+    if (!email) { showError('Email requis', 'email'); isValid = false; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Format email invalide', 'email'); isValid = false;
     }
-    
-    if (!email) {
-        showError('Email requis', 'email');
-        isValid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showError('Format email invalide', 'email');
-        isValid = false;
-    }
-    
-    if (!sujet) {
-        showError('Sujet requis', 'sujet');
-        isValid = false;
-    }
-    
-    if (!message) {
-        showError('Message requis', 'message');
-        isValid = false;
-    }
-    
+    if (!sujet)   { showError('Sujet requis', 'sujet'); isValid = false; }
+    if (!message) { showError('Message requis', 'message'); isValid = false; }
     if (!isValid) return;
-    
-    // Simulation d'envoi
-    alert('Message envoyé! Nous vous répondrons dès que possible.');
-    e.target.reset();
+
+    alert('Merci ! Votre message a été envoyé. Nous vous répondrons au plus vite.');
+    e.target.submit(); // <-- envoi réel vers FormSubmit
 }
+
 
 // =============================================
 // FONCTIONS D'ANIMATION
