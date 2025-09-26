@@ -98,13 +98,14 @@ function handleReservationSubmit(e) {
         isValid = false;
     }
     
-    if (!telephone) {
+    if (!telDigits) {
         showError('Téléphone requis', 'telephone');
         isValid = false;
-    } else if (!/^[0-9]{9,15}$/.test(telephone)) {
-        showError('Numéro invalide (9-15 chiffres)', 'telephone');
+    } else if (!/^\d{9,15}$/.test(telDigits)) {
+        showError('Numéro invalide (9–15 chiffres)', 'telephone');
         isValid = false;
     }
+
     
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         showError('Format email invalide', 'email');
