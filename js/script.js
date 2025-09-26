@@ -60,6 +60,7 @@ function handleReservationSubmit(e) {
     const dateFin = formElements['date-fin'].value;
     const vehiculeSelect = formElements['vehicule'];
     const lieuRetraitSelect = formElements['lieu-retrait'];
+    const indicatifSelect = formElements['indicatif'];
     const telephone = formElements['telephone'].value;
     const email = formElements['email'].value;
 
@@ -74,6 +75,16 @@ function handleReservationSubmit(e) {
     if (!dateFin) {
         showError('Date de fin requise', 'date-fin');
         isValid = false;
+    }
+
+    // Cohérence des dates (évite date fin < date début)
+    if (dateDebut && dateFin) {
+        const d1 = new Date(dateDebut);
+        const d2 = new Date(dateFin);
+        if (d2 < d1) {
+            showError('La date de fin doit être postérieure à la date de début', 'date-fin');
+            isValid = false;
+        }
     }
     
     if (!vehiculeSelect.value) {
@@ -105,12 +116,12 @@ function handleReservationSubmit(e) {
     const priceInfo = calculatePrice();
     const vehiculeText = vehiculeSelect.options[vehiculeSelect.selectedIndex].text.split(' - ')[0];
     const lieuRetraitText = lieuRetraitSelect.options[lieuRetraitSelect.selectedIndex].text;
-    const indicatif = formElements['indicatif'].value;
+    const indicatif = indicatifSelect ? indicatifSelect.value : '';
     const telComplet = `${indicatif}${telephone}`;
 
     // Message de confirmation
     const confirmationMessage = `
-        Réservation confirmée !
+        Réservation envoyée !
         --------------------------
         Véhicule: ${vehiculeText}
         Point de retrait: ${lieuRetraitText}
@@ -123,11 +134,8 @@ function handleReservationSubmit(e) {
         Nous vous contacterons pour confirmation.
     `;
     
-    e.target.submit()
     alert(confirmationMessage);
-    
-    // Réinitialisation optionnelle
-    // e.target.reset();
+    e.target.submit(); // Soumet réellement au service FormSubmit
 }
 
 /**
@@ -136,21 +144,46 @@ function handleReservationSubmit(e) {
  */
 function calculatePrice() {
     const vehiculeSelect = document.getElementById('vehicule');
-    const selectedOption = vehiculeSelect.options[vehiculeSelect.selectedIndex];
-    const priceText = selectedOption.value.match(/[\d,]+ DA/)[0];
-    const pricePerDay = parseInt(priceText.replace(/\D/g, ''));
+    const selectedOption = vehiculeSelect ? vehiculeSelect.options[vehiculeSelect.selectedIndex] : null;
+
+    // Récupère le prix dans le libellé (ex: "Renault Clio 5 - 8000 DA/jour")
+    let priceText = '—';
+    let pricePerDayNumber = null;
+
+    if (selectedOption && selectedOption.text) {
+        const match = selectedOption.text.match(/(\d+)\s*DA/);
+        if (match) {
+            priceText = `${parseInt(match[1], 10).toLocaleString()} DA`;
+            pricePerDayNumber = parseInt(match[1], 10);
+        }
+    }
     
-    const dateDebut = new Date(document.getElementById('date-debut').value);
-    const dateFin = new Date(document.getElementById('date-fin').value);
-    
-    // Calcul du nombre de jours
-    const diffTime = Math.abs(dateFin - dateDebut);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) || 1;
+    const dateDebutInput = document.getElementById('date-debut');
+    const dateFinInput = document.getElementById('date-fin');
+    const hasDates = dateDebutInput && dateDebutInput.value && dateFinInput && dateFinInput.value;
+
+    let totalDays = 1;
+    if (hasDates) {
+        const dateDebut = new Date(dateDebutInput.value);
+        const dateFin = new Date(dateFinInput.value);
+        if (dateFin >= dateDebut) {
+            const diffTime = dateFin.getTime() - dateDebut.getTime();
+            const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            totalDays = Math.max(1, days);
+        } else {
+            // Dates inversées -> on garde 1 jour pour éviter un affichage incohérent
+            totalDays = 1;
+        }
+    }
+
+    const totalPrice = (pricePerDayNumber && hasDates)
+        ? (pricePerDayNumber * totalDays).toLocaleString() + ' DA'
+        : '—';
     
     return {
         pricePerDay: priceText,
-        totalDays: diffDays,
-        totalPrice: (pricePerDay * diffDays).toLocaleString() + ' DA'
+        totalDays: totalDays,
+        totalPrice: totalPrice
     };
 }
 
@@ -218,7 +251,7 @@ function handleContactSubmit(e) {
 
 function initAnimations() {
     // Configuration initiale des éléments animés
-    const cards = document.querySelectorAll('.vehicule-card');
+    const cards = document.querySelectorAll('.vehicule-card, .vehicle-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -245,7 +278,7 @@ function initAnimations() {
 }
 
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.vehicule-card, .contact-info, .reservation-form');
+const elements = document.querySelectorAll('.vehicule-card, .vehicle-card, .contact-info, .reservation-form');
     const screenPosition = window.innerHeight / 1.3;
     
     elements.forEach(element => {
@@ -255,6 +288,29 @@ function animateOnScroll() {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
         }
+    });
+}
+
+// =============================================
+// FONCTIONS DU CATALOGUE
+// =============================================
+
+function initCategoryButtons() {
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 }
 
