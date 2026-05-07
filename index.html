@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HB Location - Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="HB Location" class="logo-icon">
+                <span class="logo-text">HB Location</span>
+            </a>
+            <nav>
+                <ul>
+                    <li class="active"><a href="index.html">Accueil</a></li>
+                    <li><a href="catalogue.html">Catalogue</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1>Louez votre véhicule en Algérie</h1>
+                <p>Découvrez nos tarifs compétitifs et notre service premium</p>
+                <a href="catalogue.html" class="hero-btn">Voir nos véhicules</a>
+            </div>
+        </section>
+
+        <!-- Section Réservation -->
+        <section class="reservation-form">
+            <div class="form-container">
+                <h2>Réservez dès maintenant</h2>
+                <form id="reservationForm" action="https://formsubmit.co/hb.location.auto@gmail.com" method="POST">
+                    <!-- Configuration FormSubmit -->
+                    <input type="hidden" name="_subject" value="Nouvelle réservation HB Location">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://wa.me/213550400665?text=Je%20confirme%20ma%20r%C3%A9servation%20HB%20Location">
+
+                    <!-- Première ligne -->
+                    <div class="form-line">
+                        <div class="input-group">
+                            <label for="nom">Nom*</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="prenom">Prénom*</label>
+                            <input type="text" id="prenom" name="prenom" required>
+                        </div>
+                    </div>
+
+                    <!-- Deuxième ligne -->
+                    <div class="form-line">
+                        <div class="input-group">
+                            <label for="lieu-retrait">Point de retrait*</label>
+                            <select id="lieu-retrait" name="lieu_retrait" required>
+                                <option value="">Choisissez...</option>
+                                <option value="aeroport-alger">Aéroport d'Alger</option>
+                                <option value="aeroport-bejaia">Aéroport de Béjaïa</option>
+                                <option value="agence">Agence HB Location</option>
+                                <option value="domicile">Livraison à domicile</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="vehicule">Véhicule*</label>
+                            <select id="vehicule" name="vehicule" required>
+                                <option value="">Choisissez un véhicule...</option>
+                                <option value="Dacia Sandero (ess)- 4500 DA/jour">Dacia Sandero (ess)- 4500 DA/jour</option>
+                                <option value="Dacia Sandero (dies)- 5500 DA/jour">Dacia Sandero (dies)- 5500 DA/jour</option>
+                                <option value="Renault Symbol - 5500 DA/jour">Renault Symbol - 5500 DA/jour</option>
+                                <option value="Renault Clio 4 - 6500 DA/jour">Renault Clio 4 - 6500 DA/jour</option>
+                                <option value="Skoda Fabia - 6500 DA/jour">Skoda Fabia - 6500 DA/jour</option>
+                                <option value="Renault Clio 5 - 7000 DA/jour">Renault Clio 5 - 7000 DA/jour</option>
+                                <option value="Seat Arona - 8000 DA/jour">Seat Arona - 8000 DA/jour</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Troisième ligne (Dates) -->
+                    <div class="form-line">
+                        <div class="input-group">
+                            <label for="date-debut">Date de début*</label>
+                            <input type="date" id="date-debut" name="date_debut" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="date-fin">Date de fin*</label>
+                            <input type="date" id="date-fin" name="date_fin" required>
+                        </div>
+                    </div>
+
+                    <!-- Quatrième ligne (Téléphone) -->
+                    <div class="form-line">
+                        <div class="input-group">
+                            <label for="indicatif">Indicatif*</label>
+                            <select id="indicatif" name="indicatif" required>
+                                <option value="+213">Algérie (+213)</option>
+                                <option value="+33">France (+33)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="telephone">Téléphone*</label>
+                            <input type="tel" id="telephone" name="telephone" required>
+                        </div>
+                    </div>
+
+                    <!-- Cinquième ligne (Email) -->
+                    <div class="form-line">
+                        <div class="input-group full-width">
+                            <label for="email">Email (facultatif)</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </div>
+
+                    <div id="price-display" class="price-display"></div>
+
+                    <button type="submit" class="submit-btn">Confirmer la réservation</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Section Véhicules populaires -->
+        <section class="featured-vehicles">
+            <div class="container">
+                <h2>Nos véhicules populaires</h2>
+                <div class="vehicles-grid">
+                    <!-- Véhicule 1 -->
+                    <div class="vehicle-card">
+                        <img src="images/sandero.png" alt="Dacia Sandero">
+                        <div class="vehicle-info">
+                            <h3>Dacia Sandero</h3>
+                            <p class="price">À partir de <strong>4500 DA/jour</strong></p>
+                            <a href="catalogue.html#sandero" class="btn">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Véhicule 2 -->
+                    <div class="vehicle-card">
+                        <img src="images/symbol.png" alt="Renault Symbol">
+                        <div class="vehicle-info">
+                            <h3>Renault Symbol</h3>
+                            <p class="price">À partir de <strong>5500 DA/jour</strong></p>
+                            <a href="catalogue.html#symbol" class="btn">Détails</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Véhicule 3 -->
+                    <div class="vehicle-card">
+                        <img src="images/clio-iv.png" alt="Renault Clio">
+                        <div class="vehicle-info">
+                            <h3>Renault Clio 4</h3>
+                            <p class="price">À partir de <strong>6500 DA/jour</strong></p>
+                            <a href="catalogue.html#clio" class="btn">Détails</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo-hb-wrapper">
+                        <img src="images/logo.png" alt="Logo HB Location" class="footer-logo">
+                        <span class="footer-logo-text">HB Location</span>
+                    </div>
+                    <p class="footer-description">Votre partenaire de confiance pour la location de véhicules depuis 2018.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Réservation</a></li>
+                        <li><a href="catalogue.html"><i class="fas fa-chevron-right"></i> Catalogue</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="cgu.html"><i class="fas fa-chevron-right"></i> CGU</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux sociaux</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/1E7LZG3Cci/?mibextid=wwXIfr" class="social-btn fb" target="_blank" rel="noopener noreferrer">
+                            <img src="images/facebook-icon.png" alt="Facebook" class="social-icon">
+                        </a>
+                        <a href="https://wa.me/213550400665" class="social-btn wa" target="_blank" rel="noopener noreferrer">
+                            <img src="images/whatsapp-icon.png" alt="WhatsApp" class="social-icon">
+                        </a>
+                        <a href="https://www.instagram.com/hb_location.auto?igsh=MWIxOGt1dHliMGZ5cg==" class="social-btn ig" target="_blank" rel="noopener noreferrer">
+                            <img src="images/instagram-icon.png" alt="Instagram" class="social-icon">
+                        </a>
+                        <a href="https://www.tiktok.com/@hb.location.auto?_t=ZN-8wDhIKKrt8p&_r=1" class="social-btn tt" target="_blank" rel="noopener noreferrer">
+                            <img src="images/tiktok-icon.png" alt="TikTok" class="social-icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="text-align: center; padding: 15px 0; border-top: 1px solid #333;">
+                <p style="margin: 0;">&copy; 2025 HB Location. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</body>
+</html>
